@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cts.training</groupId>
+  <artifactId>Calculator</artifactId>
+  <version>1.0</version>
+  
+  <properties>
+  	<maven.compiler.source>11</maven.compiler.source>
+  	<maven.compiler.target>11</maven.compiler.target>
+  </properties>
+  
+  <profiles>
+  <profile>
+        <id>sonar-new</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+            <sonar.host.url>http://localhost:9000</sonar.host.url>
+            <!--  
+            <sonar.login>xyz</sonar.login>
+            <sonar.projectKey>key</sonar.projectKey>
+            <sonar.projectName>name</sonar.projectName> 
+            -->
+        </properties>
+    </profile>
+     <!--
+    <profile>
+        <id>sonar-old</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+            <sonar.host.url>http://localhost:9000</sonar.host.url>
+            <sonar.login>xyz</sonar.login> 
+        </properties>
+    </profile> -->
+    <profile>
+        <id>sonar-local</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+            <sonar.host.url>http://localhost:9000/</sonar.host.url>
+        </properties>
+    </profile>
+  </profiles>
+  <dependencies>
+  	<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+    		<groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.13</version>
+		    <scope>test</scope>
+		</dependency>
+	<!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+		<dependency>
+		    <groupId>org.sonarsource.scanner.maven</groupId>
+		    <artifactId>sonar-maven-plugin</artifactId>
+		    <version>3.7.0.1746</version>
+		</dependency>
+	
+  </dependencies>
+  <build>
+  <plugins>
+  <plugin>
+	<groupId>org.jacoco</groupId>
+	<artifactId>jacoco-maven-plugin</artifactId>
+	<version>0.8.2</version>
+	<executions>
+		<execution>
+			<goals>
+				<goal>prepare-agent</goal>
+			</goals>
+		</execution>
+		<!-- attached to Maven test phase -->
+		<execution>
+			<id>report</id>
+			<phase>test</phase>
+			<goals>
+				<goal>report</goal>
+			</goals>
+		</execution>
+	</executions>
+	</plugin>
+</plugins>
+</build>
+</project>
